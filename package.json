@@ -1,0 +1,20 @@
+{
+  "name": "système-collecte-retours-utilisateurs",
+  "version": "1.0.0",
+  "description": "Une application web simple pour la collecte et l'analyse des retours d'utilisateurs sur des produits.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "author": "Votre Nom",
+  "license": "MIT"
+}
