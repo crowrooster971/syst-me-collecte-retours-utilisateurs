@@ -23,28 +23,30 @@ const retourSchema = new mongoose.Schema({
 });
 const Retour = mongoose.model('Retour', retourSchema);
 
-// Routes
+// Route pour créer un nouveau retour
 app.post('/retours', async (req, res) => {
   const nouveauRetour = new Retour(req.body);
   try {
     await nouveauRetour.save();
     res.status(201).send(nouveauRetour);
   } catch (err) {
-    // Handle error if the return data is not valid
+    // Gérer l'erreur si les données de retour ne sont pas valides
     res.status(400).send({ message: 'Erreur lors de la création du retour.', error: err });
   }
 });
 
+// Route pour obtenir tous les retours
 app.get('/retours', async (req, res) => {
   try {
     const retours = await Retour.find();
     res.status(200).send(retours);
   } catch (err) {
-    // Handle any error that may occur during the fetching of the retours
+    // Gérer toute erreur pouvant survenir lors de la récupération des retours
     res.status(500).send({ message: 'Erreur lors de la récupération des retours.', error: err });
   }
 });
 
+// Démarrage du serveur
 app.listen(PORT, () => {
   console.log(`Serveur en cours d'exécution sur le port ${PORT}`);
 });
