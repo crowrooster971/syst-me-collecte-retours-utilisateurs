@@ -35,8 +35,13 @@ app.post('/retours', async (req, res) => {
 });
 
 app.get('/retours', async (req, res) => {
-  const retours = await Retour.find();
-  res.status(200).send(retours);
+  try {
+    const retours = await Retour.find();
+    res.status(200).send(retours);
+  } catch (err) {
+    // Handle any error that may occur during the fetching of the retours
+    res.status(500).send({ message: 'Erreur lors de la récupération des retours.', error: err });
+  }
 });
 
 app.listen(PORT, () => {
