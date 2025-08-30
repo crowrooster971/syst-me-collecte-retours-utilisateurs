@@ -25,6 +25,11 @@ const Retour = mongoose.model('Retour', retourSchema);
 
 // Route pour créer un nouveau retour
 app.post('/retours', async (req, res) => {
+  const { utilisateur, commentaire } = req.body;
+  // Validation simple des données
+  if (!utilisateur || !commentaire) {
+    return res.status(400).send({ message: 'Utilisateur et commentaire sont requis.' });
+  }
   const nouveauRetour = new Retour(req.body);
   try {
     await nouveauRetour.save();
