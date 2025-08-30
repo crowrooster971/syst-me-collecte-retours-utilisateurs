@@ -30,7 +30,8 @@ app.post('/retours', async (req, res) => {
     await nouveauRetour.save();
     res.status(201).send(nouveauRetour);
   } catch (err) {
-    res.status(400).send(err);
+    // Handle error if the return data is not valid
+    res.status(400).send({ message: 'Erreur lors de la création du retour.', error: err });
   }
 });
 
